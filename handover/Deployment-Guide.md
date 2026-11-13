@@ -44,7 +44,9 @@ The application connects before listening; startup exits on a connection failure
 
 The public catalogue is read from MongoDB. The bundled records are available in `server/data/`, and `npm run seed --prefix server` is the provided catalogue seed command. **Do not run it against an existing or unverified production database:** the script deletes and replaces catalogue collections, including with its default invocation when no programs are present. Verify the target database is new and empty, take a backup, and obtain client authorization before any seed operation. It is not run automatically during deployment.
 
-Public registration creates student-role users. This project has no public admin-registration or documented safe admin-bootstrap command. Before launch, the client must approve a secure initial admin provisioning procedure; do not promote an account through the public registration form or share admin credentials in chat.
+Public registration creates student-role users. An approved one-time command is provided for initial setup: `npm run create-admin --prefix server`. Run it once from a trusted interactive terminal with the client-approved production environment configured, after confirming the target database is correct. The command refuses non-production mode and refuses to proceed if an admin already exists; it does not delete or update existing accounts. It validates and hashes the new password, prompts without echoing it, and sends an email-verification link. Never run this command against a database unless the client explicitly authorizes initial admin creation.
+
+The command requires the production MongoDB, secret, public URL, and SMTP environment values. If email delivery fails after the user record is created, do not rerun the command; repair SMTP and use the normal verification-resend flow.
 
 ## Health checks and verification
 

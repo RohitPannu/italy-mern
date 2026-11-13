@@ -131,6 +131,7 @@ Seed catalogue data only into a fresh database. The seed script replaces program
 | Build standalone preview output | `npm run preview:single --prefix client` |
 | Start API for production | `npm start --prefix server` |
 | Seed a fresh database | `npm run seed --prefix server` |
+| Create the first admin (one-time, production only) | `npm run create-admin --prefix server` |
 | Run backend integration tests | `npm test --prefix server` |
 | Run database-independent Node utility tests | `node --test server/scripts/auth-utils.test.js server/scripts/audit.test.js` |
 | Run catalogue audit (writes a CSV report) | `node server/scripts/audit.js` |
@@ -138,6 +139,8 @@ Seed catalogue data only into a fresh database. The seed script replaces program
 ## Testing
 
 The authentication integration tests use `MongoMemoryServer` when `MONGO_TEST_URI` is unset. When `MONGO_TEST_URI` is set, they connect to that database instead. Before each test, the suite calls `mongoose.connection.dropDatabase()`, which deletes every collection in the connected test database. Never point it at a production, shared, or otherwise valuable database. Confirm the effective test URI is a separate disposable database before running `npm test --prefix server`.
+
+The initial-admin command requires explicit client approval and a verified production environment; it creates an admin only if none exists, never replaces an account, and sends email verification. See the [admin guide](./handover/Admin-User-Guide.md).
 
 The Node utility tests do not connect to MongoDB and can be run independently with the command above. There is no separate client test script currently configured.
 

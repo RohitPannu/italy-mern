@@ -2,7 +2,9 @@
 
 ## Admin sign-in
 
-The admin portal is at `/admin` on the deployed website (for example, `https://<client-domain>/admin`). Use only an account that the client has explicitly provisioned with the `admin` role. This repository does not provide public admin registration or a documented admin bootstrap command. Ordinary public registration creates student accounts and must not be used to create an administrator.
+The admin portal is at `/admin` on the deployed website (for example, `https://<client-domain>/admin`). Use only an account that the client has explicitly provisioned with the `admin` role. Ordinary public registration creates student accounts and must not be used to create an administrator.
+
+For the first administrator only, the client may use `npm run create-admin --prefix server` from a trusted interactive terminal configured for the correct production environment. This one-time command checks that no administrator exists, asks for the password without echoing it, and sends an email-verification link. Run it only with the client's explicit authorization. Do not rerun it if email delivery fails; repair SMTP and use the normal verification-resend flow.
 
 Use the password manager or another client-approved secure channel to deliver credentials. Require the admin to set a unique password and verify their email. Password recovery requires the configured production email service.
 
