@@ -1,0 +1,44 @@
+node_modules/
+**/node_modules/
+
+# Build output and test artifacts
+dist/
+**/dist/
+build/
+**/build/
+coverage/
+**/coverage/
+.vite/
+*.tsbuildinfo
+
+# Environment files: only checked-in examples are allowed
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!.env.production.example
+!**/.env.example
+!**/.env.production.example
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tmp
+*.temp
+*.swp
+*.swo
+/auth-test-output.txt
+/server/auth-test-output.txt
+/client/runtime-health.txt
+/server/runtime-health.txt
+/server/data/audit-report.csv
+
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/*
+!.vscode/extensions.json
